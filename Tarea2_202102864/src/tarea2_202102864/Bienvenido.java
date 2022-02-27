@@ -4,29 +4,48 @@
  */
 package tarea2_202102864;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author alvar
  */
-public class Login extends javax.swing.JFrame {
-    
+public class Bienvenido extends javax.swing.JFrame {
+
     Usuario usuarios[];
     
+    //private Object javax;
+    
     /**
-     * Creates new form Login
-     * @param usuarios
+     * Creates new form Bienvenido
      */
-    public Login(Usuario usuarios[]) {
+    public Bienvenido(Usuario usuarios[]) {
         this.usuarios = usuarios;
         initComponents();
+        MostrarUsuarios();
+
+    //    MostrarUsuarios();
     }
 
-    private Login() {
+    private Bienvenido() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public void MostrarUsuarios(){
+    
+        String matriz[][] = new String[usuarios.length][3];
+            for(int i=0; i<usuarios.length; i++){
+                if(usuarios[i]!=null){
+                matriz[i][0] = usuarios[i].getNombreUsuario();
+                matriz[i][1] = usuarios[i].getApellidoUsuario();
+                matriz[i][2] = usuarios[i].getPasswordUsuario();
+            }
+    }
+    
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            matriz,
+            new String []{
+            "NOMBRE", "APELLIDO", "CARNET"
+        }));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,26 +57,22 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        Usuario = new javax.swing.JTextField();
-        BIngresar = new javax.swing.JButton();
-        Password = new javax.swing.JPasswordField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("TAREA 2 ");
+        jLabel1.setText("BIENVENIDO");
 
-        jLabel2.setText("USUARIO:");
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jLabel3.setText("CONTRASEÑA:");
-
-        BIngresar.setText("INGRESAR");
-        BIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BIngresarActionPerformed(evt);
+            },
+            new String [] {
+                "NOMBRE", "APELLIDO", "CARNET"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(Tabla);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,36 +81,21 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
+                        .addGap(160, 160, 160)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BIngresar)
-                            .addComponent(Usuario)
-                            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(BIngresar)
-                .addGap(54, 54, 54))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,29 +118,6 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BIngresarActionPerformed
-        // TODO add your handling code here:
-        
-        String Usuario1 = this.Usuario.getText();
-        String passwordUsuario = this.Password.getText();
-        
-        
-        for(int i=0; i<usuarios.length; i++){
-        if(usuarios[i]!=null){
-            if(usuarios[i].getNombreUsuario().equals(Usuario1) &&
-                    usuarios[i].getPasswordUsuario().equals(passwordUsuario)){
-                Bienvenido ventana = new Bienvenido(usuarios);
-                ventana.show();
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta", "Error",JOptionPane.ERROR_MESSAGE);
-                Login ventana = new Login(usuarios);
-                ventana.show();
-                this.dispose();
-            }
-        }}
-    }//GEN-LAST:event_BIngresarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -158,31 +135,28 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bienvenido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bienvenido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bienvenido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bienvenido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-           public void run() {
-               new Login().setVisible(true);
+            public void run() {
+                new Bienvenido().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BIngresar;
-    private javax.swing.JPasswordField Password;
-    private javax.swing.JTextField Usuario;
+    private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,8 +16,12 @@ public class Tarea2_202102864 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Login ventana = new Login();
-        ventana.show();
+        Usuario[] usuarios = new Usuario[3];
+        
+        usuarios[0] = new Usuario(202102864,"Alvaro","Arenas","202102864");
+        
+        Login ventana = new Login(usuarios);
+        ventana.setVisible(true);
     }
     
 }
